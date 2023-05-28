@@ -1,0 +1,15 @@
+# virtual environments
+venv/
+
+.vscode/
+vscode/
+
+# local env files
+.env
+
+.local
+
+#database
+db.sqlite3
+
+__pycache__
