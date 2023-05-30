@@ -12,6 +12,7 @@
 git clone https://github.com/mwombeki6/chief.git
 
 ```
+## NOTE: install python3[latest_version] by going to the official python website and download python3 latest version from there and follow its instructions on how to install in your specific computing architecture[linux,windows,mac]
 
 ## 2.📌 Create a virtual environment in the cloned project directory where you'll install all the python libraries
 
@@ -46,3 +47,11 @@ pip --version
 #after| within the same virtual environment you are activated in type
 pip install -r requirements.txt
 ```
+
+## 4. Run the development server
+
+```bash
+python3 manage.py runserver
+# the server will start and run on port 8000, 'http://127.0.0.1:8000/' as a default port for django
+```
+
