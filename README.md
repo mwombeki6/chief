@@ -1,4 +1,4 @@
-# Chief Research Platfrom(backend-API) ✨✨
+# Chief Research Platfrom(backend-API) 💡
 
 ```bash
 Author: Erick Mwombeki 👋🏾
@@ -15,9 +15,14 @@ git clone https://github.com/mwombeki6/chief.git
 
 ```
 
-2. Create a virtual environment in the cloned project directory where you'll install all the python libraries
+2.📌 Create a virtual environment in the cloned project directory where you'll install all the python libraries
+
+
+
+
 
 #💻 In windows PC
+
 ```bash
 
 # copy the code below to create a virtual environment with venv
@@ -30,6 +35,7 @@ venv\Scripts\activate
 ```
 
 🖥️ In Linux PC
+
 ```bash
 python3 -m venv venv
 
@@ -39,11 +45,12 @@ source venv/bin/activate
 ```
 
 🔔 install the python libraries and dependencies by installing the requirements.txt file, the file is located in within the project you cloned
+
 ```bash
 #before| make sure that pip is installed globally in your system PC, by typing code below in your terminal
 
 pip --version
 
 #after| within the same virtual environment you are activated in type
-pip install -r requirements.txt 
+pip install -r requirements.txt
 ```
