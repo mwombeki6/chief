@@ -48,7 +48,7 @@ pip --version
 pip install -r requirements.txt
 ```
 
-### 4. Run the development server
+### ⛓️4. Run the development server
 
 ```
 python3 manage.py runserver
