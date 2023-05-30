@@ -15,7 +15,7 @@ git clone https://github.com/mwombeki6/chief.git
 
 ## 2.📌 Create a virtual environment in the cloned project directory where you'll install all the python libraries
 
-### In windows PC
+### 💻 In windows PC
 
 ```bash
 # copy the code below to create a virtual environment with venv
@@ -27,7 +27,7 @@ python -m venv venv
 venv\Scripts\activate
 ```
 
-### In Linux PC
+### 🖥️ In Linux PC
 
 ```bash
 python3 -m venv venv
@@ -41,7 +41,6 @@ source venv/bin/activate
 
 ```bash
 #before| make sure that pip is installed globally in your system PC, by typing code below in your terminal
-
 pip --version
 
 #after| within the same virtual environment you are activated in type
