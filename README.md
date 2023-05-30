@@ -1,6 +1,6 @@
 # 🔱 Chief Research Platfrom(backend-API) 💡
 
-```bash
+```
 👋🏾  Author: Erick Mwombeki
 ```
 
