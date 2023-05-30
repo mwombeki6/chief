@@ -4,7 +4,7 @@
 Author: Erick Mwombeki 👋🏾
 ```
 
-##⚙️ Getting Started:
+## Getting Started:⚙️
 
 1.🏏 First, clone the github repository below by copying the code below to your terminal :
 
