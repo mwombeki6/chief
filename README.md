@@ -12,7 +12,7 @@ git clone https://github.com/mwombeki6/chief.git
 
  ⚠️ NOTE: install `python3[latest_version]` by going to the official python website and download python3 latest version from there and follow its instructions on how to install in your specific computing architecture[linux,windows or mac]
 
-`https://www.python.org/downloads/`
+👉🏾 [Python Download Page](https://www.python.org/downloads/)
 
 ### 2.📌 Create a virtual environment in the cloned project directory where you'll install all the python libraries
 
