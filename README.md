@@ -4,7 +4,7 @@
 Author: Erick Mwombeki 👋🏾
 ```
 
-## Getting Started:
+##⚙️ Getting Started:
 
 1.🏏 First, clone the github repository below by copying the code below to your terminal :
 
@@ -44,7 +44,7 @@ source venv/bin/activate
 
 ```
 
-🔔 install the python libraries and dependencies by installing the requirements.txt file, the file is located in within the project you cloned
+3.🔔 install the python libraries and dependencies by installing the requirements.txt file, the file is located in within the project you cloned
 
 ```bash
 #before| make sure that pip is installed globally in your system PC, by typing code below in your terminal
