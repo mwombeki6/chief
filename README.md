@@ -9,22 +9,15 @@ Author: Erick Mwombeki 👋🏾
 1.🏏 First, clone the github repository below by copying the code below to your terminal :
 
 ```bash
-
 git clone https://github.com/mwombeki6/chief.git
-
 
 ```
 
 2.📌 Create a virtual environment in the cloned project directory where you'll install all the python libraries
 
-
-
-
-
-#💻 In windows PC
+### In windows PC
 
 ```bash
-
 # copy the code below to create a virtual environment with venv
 python3 -m venv venv
 # or
@@ -34,7 +27,7 @@ python -m venv venv
 venv\Scripts\activate
 ```
 
-🖥️ In Linux PC
+### In Linux PC
 
 ```bash
 python3 -m venv venv
