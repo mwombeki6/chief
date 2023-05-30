@@ -4,18 +4,18 @@
 👋🏾  Author: Erick Mwombeki
 ```
 
-## ⚙️ Getting Started:
+## ⚙️ Getting Started
 
-## 1.🏏 First, clone the github repository below by copying the code below to your terminal :
+## 1.🏏 First, clone the github repository below by copying the code below to your terminal
 
 ```bash
 git clone https://github.com/mwombeki6/chief.git
 
 ```
 
-##### ⚠️ NOTE: install python3[latest_version] by going to the official python website and download python3 latest version from there and follow its instructions on how to install in your specific computing architecture[linux,windows or mac]
+#### ⚠️ NOTE: install `python3[latest_version]` by going to the official python website and download python3 latest version from there and follow its instructions on how to install in your specific computing architecture[linux,windows or mac]
 
-`bash https://www.python.org/downloads/`
+`https://www.python.org/downloads/`
 
 ## 2.📌 Create a virtual environment in the cloned project directory where you'll install all the python libraries
 
