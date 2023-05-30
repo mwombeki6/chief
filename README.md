@@ -1,7 +1,7 @@
 # 🔱 Chief Research Platfrom(backend-API) 💡
 
 ```bash
-👋🏾  Author: Erick Mwombeki 
+👋🏾  Author: Erick Mwombeki
 ```
 
 ## ⚙️ Getting Started:
@@ -12,7 +12,10 @@
 git clone https://github.com/mwombeki6/chief.git
 
 ```
-##### ⚠️ NOTE: install python3[latest_version] by going to the official python website and download python3 latest version from there and follow its instructions on how to install in your specific computing architecture[linux,windows,mac]
+
+##### ⚠️ NOTE: install python3[latest_version] by going to the official python website and download python3 latest version from there and follow its instructions on how to install in your specific computing architecture[linux,windows or mac]
+
+`bash https://www.python.org/downloads/`
 
 ## 2.📌 Create a virtual environment in the cloned project directory where you'll install all the python libraries
 
@@ -54,4 +57,3 @@ pip install -r requirements.txt
 python3 manage.py runserver
 # the server will start and run on port 8000, 'http://127.0.0.1:8000/' as a default port for django
 ```
-
