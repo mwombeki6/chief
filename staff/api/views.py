@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.middleware.csrf import get_token
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -76,7 +77,12 @@ class WhoAmIView(APIView):
     @staticmethod
     def get(request, format=None):
         print(request.user.username)
-        return JsonResponse(request.user.username, safe=False)
+        user = request.user
+        data = {
+        'username': user.username,
+        'email': user.email
+    } 
+        return JsonResponse(data, safe=False)
 
 
 class StaffOnlyView(APIView):
@@ -86,6 +92,7 @@ class StaffOnlyView(APIView):
         try:
             user = request.user
             user = UserSerializer(user)
+            
 
             return Response({"user": user.data}, status=status.HTTP_200_OK)
         except:
