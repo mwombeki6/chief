@@ -35,6 +35,18 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+THIRD_PARTY_APPS = [
+    'daphne',
+    "cloudinary",
+    "django_countries",
+    "mptt",
+    "drf_yasg",
+    "rest_framework",
+    "phonenumber_field",
+    "corsheaders",
+    'treebeard',   
+]
+
 DEFAULT_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -48,21 +60,13 @@ LOCAL_APPS = [
     "custom",
     "staff",
     "student",
-    "innovation"
+    "innovation",
+    "notification"
 ]
 
-THIRD_PARTY_APPS = [
-    "cloudinary",
-    "django_countries",
-    "mptt",
-    "drf_yasg",
-    "rest_framework",
-    "phonenumber_field",
-    "corsheaders",
-    'treebeard'
-]
 
-INSTALLED_APPS = DEFAULT_APPS + LOCAL_APPS + THIRD_PARTY_APPS
+
+INSTALLED_APPS = THIRD_PARTY_APPS + DEFAULT_APPS + LOCAL_APPS 
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -93,7 +97,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "core.wsgi.application"
+
+ASGI_APPLICATION = "core.asgi.application"
 
 
 # Database
@@ -154,6 +159,15 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

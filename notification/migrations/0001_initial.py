@@ -3,7 +3,6 @@
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
-import django.utils.timezone
 
 
 class Migration(migrations.Migration):
@@ -15,7 +14,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="Staff",
+            name="Notification",
             fields=[
                 (
                     "id",
@@ -26,29 +25,17 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
+                ("title", models.CharField(max_length=255)),
+                ("message", models.TextField()),
+                ("timestamp", models.DateTimeField(auto_now_add=True, db_index=True)),
+                ("is_viewed", models.BooleanField(db_index=True, default=False)),
                 (
-                    "created_at",
-                    models.DateTimeField(
-                        default=django.utils.timezone.now, editable=False
-                    ),
-                ),
-                (
-                    "updated_at",
-                    models.DateTimeField(
-                        default=django.utils.timezone.now, editable=False
-                    ),
-                ),
-                (
-                    "user",
+                    "recipient",
                     models.OneToOneField(
-                        editable=False,
                         on_delete=django.db.models.deletion.CASCADE,
                         to=settings.AUTH_USER_MODEL,
                     ),
                 ),
             ],
-            options={
-                "verbose_name_plural": "Staff",
-            },
         ),
     ]
