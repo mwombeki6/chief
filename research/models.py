@@ -14,7 +14,7 @@ from staff.models import Staff
 
 class Category(MPTTModel):
     """
-    Innovation Category table
+    Research Category table
     """
     
     CATEGORY_SELECT = (
@@ -32,7 +32,7 @@ class Category(MPTTModel):
         order_insertion_by = ["topic_name"]
         
     def get_absolute_url(self):
-        return reverse("innovation:category_list", args=[self.slug])
+        return reverse("research:category_list", args=[self.slug])
     
    
     def __str__(self):
@@ -46,36 +46,36 @@ class Category(MPTTModel):
     
 class Research(models.Model):
     """
-    Innovation table
+    Research table
     """
 
     category = models.ForeignKey(Category, on_delete = models.RESTRICT)
     research_name = models.CharField(max_length=255, null=False )
-    slug = AutoSlugField(populate_from = 'innovation_name', unique=True, primary_key=True)
+    slug = AutoSlugField(populate_from = 'research_name', unique=True, primary_key=True)
     abstract = models.TextField()
-    research_file = models.FileField(upload_to='innovation/files')
+    research_file = models.FileField(upload_to='research/files')
     uploaded_at = models.DateTimeField(default=timezone.now)
     uploaded_by = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     research_duration = models.CharField(max_length=100)
     
     class Meta:
         ordering = ("-uploaded_at",)
-        verbose_name = _("Innovation")
-        verbose_name_plural = _("Innovations")
+        verbose_name = _("Research")
+        verbose_name_plural = _("Researches")
      
    
 
     def get_absolute_url(self):
-        return reverse("innovation:innovation_detail", args=[self.slug])
+        return reverse("research:research_detail", args=[self.slug])
 
     def __str__(self):
-        return self.innovation_name
+        return self.research_name
     
 
     
 class Media(models.Model):
     """
-    Innovation Media table
+    Research Media table
     """    
 
     research = models.ForeignKey(Research, on_delete=models.CASCADE)
