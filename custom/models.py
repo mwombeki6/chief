@@ -7,30 +7,30 @@ from .manager import UserManager
 class User(AbstractUser):
     """Custom User  Model"""
 
-    first_name = models.CharField(max_length=255, unique=True)
-    last_name = models.CharField(max_length=255, unique=True)
-    username = models.CharField(max_length=255, unique=True)
-    email = models.EmailField(unique=True)
+    first_name = models.CharField(max_length=255, unique=True, null=True, blank=True)
+    last_name = models.CharField(max_length=255, unique=True, null=True, blank=True)
+    username = models.CharField(max_length=255, unique=True, null=True, blank=True)
+    email = models.EmailField(unique=True, null=True, blank=True)
 
     # Staff model fields
-    employee_number = models.IntegerField(unique=True, null=True)
+    employee_number = models.IntegerField(unique=True, null=True, blank=True)
 
     TITLE_SELECT = (
         ("Head Of Department", "Head Of Department"),
         ("Lecture", "Lecture"), 
     )
-    title = models.CharField(max_length=100, choices=TITLE_SELECT)
+    title = models.CharField(max_length=100, choices=TITLE_SELECT, null=True, blank=True)
 
-    education_background = models.TextField(max_length=255)
+    education_background = models.TextField(max_length=255, null=True, blank=True)
 
     # Student model fields
-    student_reg_no = models.IntegerField(unique=True, null=True)
+    student_reg_no = models.IntegerField(unique=True, null=True, blank=True)
     CLASS_SELECT = (
         ("OD20-COE", "OD20-COE"),
         ("OD21-COE", "OD21-COE"),
         ("OD22-COE", "OD-22-COE"),
     )
-    class_course = models.CharField(max_length=100, choices=CLASS_SELECT)
+    class_course = models.CharField(max_length=100, choices=CLASS_SELECT, null=True, blank=True)
 
     # Collective model fields
     DEPARTMENT_SELECT = (
@@ -39,7 +39,7 @@ class User(AbstractUser):
         ("Mechanical Engineering Department", "Mechanical Engineering Department"),
         ("BioTech Department", "BioTech Department"),
     )
-    department = models.CharField(max_length=100, choices=DEPARTMENT_SELECT)
+    department = models.CharField(max_length=100, choices=DEPARTMENT_SELECT, null=True, blank=True)
 
     is_active = models.BooleanField(default=True)
 
@@ -48,7 +48,7 @@ class User(AbstractUser):
         ("Female", "Female"),
         ("Other", "Other"),
     )
-    gender = models.CharField(max_length=100, choices=GENDER_SELECT)
+    gender = models.CharField(max_length=100, choices=GENDER_SELECT, null=True, blank=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = [

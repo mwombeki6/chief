@@ -88,7 +88,17 @@ class WhoAmIView(APIView):
     @staticmethod
     def get(request, format=None):
         print(request.user.username)
-        return JsonResponse(request.user.username, safe=False)
+        user = request.user
+        data = {
+        'first_name': user.first_name,
+        'last_name': user.last_name,
+        'username': user.username,
+        'email': user.email,
+        'student_reg': user.student_reg_no,
+        'class_course': user.class_course,
+        'department': user.department,
+    } 
+        return JsonResponse(data, safe=False)
 
 
 class StudentOnlyView(APIView):

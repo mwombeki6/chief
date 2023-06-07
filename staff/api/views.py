@@ -20,7 +20,7 @@ from rest_framework import (
 from staff.models import Staff
 from custom.models import User
 from custom.api.serializers import UserSerializer
-from .serializers import StaffSerializer
+from .serializers import StaffSerializer, UpdateSerializer
 
 
 def get_csrf(request):
@@ -72,15 +72,21 @@ def logoutView(request):
 
 class WhoAmIView(APIView):
     authentication_classes = [SessionAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated ]
 
     @staticmethod
     def get(request, format=None):
         print(request.user.username)
         user = request.user
         data = {
+        'first_name': user.first_name,
+        'last_name': user.last_name,
         'username': user.username,
-        'email': user.email
+        'email': user.email,
+        'employee_number': user.employee_number,
+        'title': user.title,
+        'education_background': user.education_background,
+        'department': user.department
     } 
         return JsonResponse(data, safe=False)
 
@@ -125,7 +131,7 @@ def registerView(request):
 @rest_decorators.permission_classes([rest_permissions.IsAuthenticated])
 def update_account(request):
     user = request.user
-    serializer = StaffSerializer(user, data=request.data, partial=True)
+    serializer = UpdateSerializer(user, data=request.data, partial=True)
 
     if serializer.is_valid():
         serializer.save()
