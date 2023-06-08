@@ -56,9 +56,9 @@ class Publication(models.Model):
     published_file = models.FileField(upload_to='publication/files')
     pages = models.IntegerField(null=True, blank=True)
     publisher = models.CharField(max_length=255, null=False)
-    published_at = models.DateTimeField(default=timezone.now)
+    published_at = models.DateField(default=timezone.now)
     uploaded_by = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    research_duration = models.CharField(max_length=100)
+    #research_duration = models.CharField(max_length=100)
     authors = models.CharField(max_length=255 ,on_delete=models.CASCADE, null=True)
     
     class Meta:
