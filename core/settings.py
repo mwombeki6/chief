@@ -61,6 +61,8 @@ LOCAL_APPS = [
     "staff",
     "student",
     "innovation",
+    "research",
+    "publication",
     "notification"
 ]
 
