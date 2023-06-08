@@ -13,7 +13,7 @@ services:
     container_name: postgress_db
 
   pgAdmin:
-    image: dpage/pgadmin4
+    image: dpage/pgadmin4:latest
     volumes:
       - pgadmin-data:/var/lib/pgadmin
     ports:
