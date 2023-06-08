@@ -59,10 +59,10 @@ class Publication(models.Model):
     published_at = models.DateField(default=timezone.now)
     uploaded_by = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     #research_duration = models.CharField(max_length=100)
-    authors = models.CharField(max_length=255 ,on_delete=models.CASCADE, null=True)
+    authors = models.CharField(max_length=255 , null=True)
     
     class Meta:
-        ordering = ("-uploaded_at",)
+        ordering = ("-published_at",)
         verbose_name = _("Publication")
         verbose_name_plural = _("Publications")
      
