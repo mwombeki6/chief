@@ -36,7 +36,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 THIRD_PARTY_APPS = [
-    'daphne',
+    "daphne",
+    "django_elasticsearch_dsl",
     "cloudinary",
     "django_countries",
     "mptt",
@@ -44,7 +45,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "phonenumber_field",
     "corsheaders",
-    'treebeard',   
+    "treebeard",
 ]
 
 DEFAULT_APPS = [
@@ -63,12 +64,12 @@ LOCAL_APPS = [
     "innovation",
     "research",
     "publication",
-    "notification"
+    "notification",
+    "search",
 ]
 
 
-
-INSTALLED_APPS = THIRD_PARTY_APPS + DEFAULT_APPS + LOCAL_APPS 
+INSTALLED_APPS = THIRD_PARTY_APPS + DEFAULT_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -149,10 +150,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 cloudinary.config(
-    cloud_name = os.getenv('CLOUDINARY_CLOUD_NAME'),
-    api_key = os.getenv('CLOUDINARY_API_KEY'),
-    api_secret = os.getenv('CLOUDINARY_API_SECRET'),
-    secure = True
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET"),
+    secure=True,
 )
 
 STATIC_URL = "static/"
@@ -171,17 +172,26 @@ CHANNEL_LAYERS = {
     },
 }
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-MEDIA_URL = '/media/'
+MEDIA_URL = "/media/"
 
 # Custom User Model
 AUTH_USER_MODEL = "custom.User"
 
 ACCOUNT_UNIQUE_EMAIL = True
 
-REST_FRAMEWORK = {"DEFAULT_PERMISSION_CLASSES": [
-    "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"]}
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
+    ],
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 25,
+}
+
+
+# Elasticsearch
+ELASTICSEARCH_DSL = {"default": {"hosts": "localhost:9200"}}
 
 
 CSRF_COOKIE_SAMESITE = "Lax"
@@ -189,8 +199,12 @@ SESSION_COOKIE_SAMESITE = "Lax"
 SESSION_COOKIE_AGE = 1209600
 CSRF_COOKIE_HTTPONLY = False
 SESSION_COOKIE_HTTPONLY = True
-CSRF_TRUSTED_ORIGINS = ['http://*.127.0.0.1',  "http://localhost:3000",
-                        'http://*.127.0.0.1',  "http://localhost:3001"]
+CSRF_TRUSTED_ORIGINS = [
+    "http://*.127.0.0.1",
+    "http://localhost:3000",
+    "http://*.127.0.0.1",
+    "http://localhost:3001",
+]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
@@ -199,15 +213,15 @@ CORS_ALLOWED_ORIGINS = [
 ]
 CORS_EXPOSE_HEADERS = ["Content-Type", "X-CSRFToken"]
 CORS_ALLOW_HEADERS = [
-    'accept',
-    'accept-encoding',
-    'authorization',
-    'content-type',
-    'dnt',
-    'origin',
-    'user-agent',
-    'x-csrftoken',
-    'x-requested-with',
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
 ]
 CORS_ALLOW_METHODS = [
     "DELETE",
