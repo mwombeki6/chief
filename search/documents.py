@@ -21,4 +21,4 @@ class UserDocument(Document):
             'first_name',
             'last_name',
             'username'
-        ]    
+        ]          

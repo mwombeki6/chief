@@ -38,6 +38,7 @@ ALLOWED_HOSTS = []
 THIRD_PARTY_APPS = [
     "daphne",
     "django_elasticsearch_dsl",
+    'django_elasticsearch_dsl_drf',
     "cloudinary",
     "django_countries",
     "mptt",
