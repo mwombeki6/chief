@@ -1,7 +1,7 @@
 import abc
 from django.shortcuts import render
-from django.http import HttpResponse
-from elasticsearch_dsl import Q
+from django.http import HttpResponse, JsonResponse
+from elasticsearch_dsl import Q, search
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.views import APIView
 from rest_framework import generics
@@ -41,9 +41,27 @@ class SearchUsers(PaginatedElasticSearchAPIView):
     document_class = UserDocument
 
     def generate_q_expression(self, query):
-        return Q('bool',
-                 should = [
-                     Q('match', username=query),
-                     Q('match', first_name=query),
-                     Q('match', last_name=query),
-                 ], minimum_should_match=1)
+        return Q(
+            "bool",
+            should=[
+                Q("match", username=query),
+                Q("match", first_name=query),
+                Q("match", last_name=query),
+            ],
+            minimum_should_match=1,
+        )
+
+
+def search_view(request):
+    query = request.GET.get("q", "")
+    results = search.query(
+        "bool",
+        should=[
+            Q("match", username=query),
+            Q("match", first_name=query),
+            Q("match", last_name=query),
+        ],
+        minimum_should_match=1,
+    ).execute()
+    serialized_results = [{"username": hit.username} for hit in results]
+    return JsonResponse({"results": serialized_results})
