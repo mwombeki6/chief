@@ -25,9 +25,7 @@ services:
     container_name: pgadmin4
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.8.0
-    volumes:
-      - certs:/usr/share/elasticsearch/config/certs
+    image: elasticsearch:8.8.0
     container_name: search_engine
     environment:
       - discovery.type=single-node
@@ -38,5 +36,4 @@ services:
 volumes:
   postgres_data:
   pgadmin-data:
-  certs:
-    driver: local
+  

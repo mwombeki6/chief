@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse
 
 from .manager import UserManager
 
@@ -67,6 +68,9 @@ class User(AbstractUser):
     is_institutionStudent = models.BooleanField(default=False)
 
     objects = UserManager()
+
+    def get_absolute_url(self):
+        return reverse("custom:custom_detail", args=[self.username])
 
     def __str__(self):
         return self.email

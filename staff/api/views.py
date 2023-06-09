@@ -7,12 +7,14 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.decorators import action
 from rest_framework import (
     exceptions as rest_exceptions,
     response,
+    viewsets,
     decorators as rest_decorators,
     permissions as rest_permissions,
 )
@@ -88,7 +90,20 @@ class WhoAmIView(APIView):
         'education_background': user.education_background,
         'department': user.department
     } 
-        return JsonResponse(data, safe=False)
+        return JsonResponse(data, safe=False) 
+
+
+class StaffView(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    lookup_field = 'username'
+
+    @action(detail=False, methods=['GET'])
+    def by_username(self, request):
+        username = request.query_params.get('username')
+        user = User.objects.get(username=username)
+        serializer = self.get_serializer(user)
+        return Response(serializer.data)     
 
 
 class StaffOnlyView(APIView):

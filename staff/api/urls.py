@@ -8,7 +8,8 @@ from .views import (
     check_auth,
     logoutView,
     update_account,
-    delete_account
+    delete_account,
+    StaffView
 )
 
 urlpatterns = [
@@ -17,6 +18,7 @@ urlpatterns = [
     path("register", registerView),
     path("login", loginView),
     path("get_user", WhoAmIView.as_view()),
+    path('retrieve_user/<username>', StaffView.as_view({'get': 'retrieve'})),
     path("staff_dashboard", StaffOnlyView.as_view()),
     path("logout", logoutView),
     path("update", update_account),
