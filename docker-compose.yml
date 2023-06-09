@@ -28,12 +28,13 @@ services:
     image: elasticsearch:8.8.0
     container_name: search_engine
     environment:
+      - xpack.security.enabled= false
       - discovery.type=single-node
     ports:
       - "9200:9200"
 
-
 volumes:
   postgres_data:
   pgadmin-data:
-  
+
+

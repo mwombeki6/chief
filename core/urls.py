@@ -31,6 +31,7 @@ urlpatterns = [
     path("api/innovation/", include("innovation.api.urls")),
     path("api/research/", include("research.api.urls")),
     path("api/publication/", include("publication.api.urls")),
+    path("api/search/", include("search.urls")),
     path("api/", include("notification.api.urls")),
     path(
         "drf-api/docs",
