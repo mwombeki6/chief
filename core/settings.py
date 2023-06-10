@@ -37,13 +37,12 @@ ALLOWED_HOSTS = []
 
 THIRD_PARTY_APPS = [
     "daphne",
-    "django_elasticsearch_dsl",
-    'django_elasticsearch_dsl_drf',
     "cloudinary",
     "django_countries",
     "mptt",
     "drf_yasg",
     "rest_framework",
+    "django_filters",
     "phonenumber_field",
     "corsheaders",
     "treebeard",
@@ -66,7 +65,6 @@ LOCAL_APPS = [
     "research",
     "publication",
     "notification",
-    "search",
 ]
 
 
@@ -108,22 +106,22 @@ ASGI_APPLICATION = "core.asgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-#DATABASES = {
- #   "default": {
-  #      "ENGINE": "django.db.backends.sqlite3",
-   #     "NAME": BASE_DIR / "db.sqlite3",
-    #}
-#}
+# DATABASES = {
+#   "default": {
+#      "ENGINE": "django.db.backends.sqlite3",
+#     "NAME": BASE_DIR / "db.sqlite3",
+# }
+# }
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_NAME'),
-        'USER': os.environ.get('POSTGRES_USER'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': os.environ.get('POSTGRES_HOST'),
-        'PORT': os.environ.get('POSTGRES_PORT'),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("POSTGRES_NAME"),
+        "USER": os.environ.get("POSTGRES_USER"),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
+        "HOST": os.environ.get("POSTGRES_HOST"),
+        "PORT": os.environ.get("POSTGRES_PORT"),
     }
 }
 
@@ -198,13 +196,8 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
     ],
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
-    "PAGE_SIZE": 25,
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
 }
-
-
-# Elasticsearch
-ELASTICSEARCH_DSL = {"default": {"hosts": "localhost:9200"}}
 
 
 CSRF_COOKIE_SAMESITE = "Lax"
