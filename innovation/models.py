@@ -25,7 +25,7 @@ class Category(MPTTModel):
     )
 
     topic_name = models.CharField(max_length=250, choices=CATEGORY_SELECT)
-    slug = AutoSlugField(populate_from = 'topic_name', unique=True, primary_key=True)
+    slug = AutoSlugField(populate_from = 'topic_name', unique=True)
     parent = TreeForeignKey("self", on_delete=models.CASCADE, null=True, blank=True, related_name="children")
     
     class MPTTMeta:
