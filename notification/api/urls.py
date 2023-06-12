@@ -1,6 +1,6 @@
-from django.urls import path, include
-from .views import NotificationView
+from django.urls import re_path
+from notification.consumers import NotificationConsumer
 
-urlpatterns = [
-    path('notification', NotificationView.as_view({'get': 'list'}) )
+websocket_urlpatterns = [
+    re_path(r'ws/notifications/$', NotificationConsumer.as_asgi()),
 ]

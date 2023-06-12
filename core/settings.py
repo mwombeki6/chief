@@ -36,7 +36,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 THIRD_PARTY_APPS = [
-    "daphne",
     "cloudinary",
     "django_countries",
     "mptt",
@@ -100,7 +99,7 @@ TEMPLATES = [
 ]
 
 
-ASGI_APPLICATION = "core.asgi.application"
+WSGI_APPLICATION = "core.wsgi.application"
 
 
 # Database
@@ -176,10 +175,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [("127.0.0.1", 6379)],
-        },
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
     },
 }
 

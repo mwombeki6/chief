@@ -4,12 +4,18 @@ from rest_framework import serializers
 from publication.models import Publication, Category
 
 class PublicationSerializer(serializers.ModelSerializer):
-    uploaded_by = UserSerializer(read_only=True)
-    #uploaded_by = serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+    uploaded_by = serializers.SerializerMethodField()
+    publication_count = serializers.SerializerMethodField()
     
     class Meta:
         model = Publication
-        fields = '__all__'
+        fields = ('category', 'publication_name', 'slug', 'abstract', 'published_file', 'pages', 'publisher', 'published_at', 'uploaded_by', 'authors', 'publication_count')
+
+    def get_uploaded_by(self, obj):
+        return obj.uploaded_by.username   
+
+    def get_publication_count(self, obj):
+        return len(obj.published_file.all())     
         
 
 class CategorySerializer(serializers.ModelSerializer):

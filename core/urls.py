@@ -34,7 +34,7 @@ urlpatterns = [
     path("api/research/", include("research.api.urls")),
     path("api/publication/", include("publication.api.urls")),
     path('api/custom/', include('rest_framework.urls')),
-    path("api/", include("notification.api.urls")),
+  
     path(
         "drf-api/docs",
         schema_view.with_ui("swagger", cache_timeout=0),

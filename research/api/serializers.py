@@ -4,12 +4,18 @@ from rest_framework import serializers
 from research.models import Research, Media, Category
 
 class ResearchSerializer(serializers.ModelSerializer):
-    uploaded_by = UserSerializer(read_only=True)
-    #uploaded_by = serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.CurrentUserDefault())
-    
+    uploaded_by = serializers.SerializerMethodField()
+    research_count = serializers.SerializerMethodField()
+
     class Meta:
         model = Research
-        fields = '__all__'
+        fields = ('category', 'research_name', 'slug', 'abstract', 'research_file', 'uploaded_at', 'uploaded_by', 'research_duration', 'research_count')
+
+    def get_uploaded_by(self, obj):
+        return obj.uploaded_by.username   
+
+    def get_research_count(self, obj):
+        return len(obj.research_file.all())    
         
       
 

@@ -1,8 +1,10 @@
 from django.urls import path
-from .views import uploadView, categoryView, mediaView, getCategories, getInnovation, CategoryItemView, InnovationView
+from .views import uploadView, categoryView, mediaView, getCategories, getInnovation, CategoryItemView, InnovationView, InnovationUpdate, InnovationDelete
 
 urlpatterns = [
     path("upload-innovation", uploadView),
+    path("update-innovation/<int:pk>", InnovationUpdate.as_view()),
+    path("delete-innovation/<int:pk>", InnovationDelete.as_view()),
     path("category-innovation", categoryView),
     path("media-innovation", mediaView),
     path("get-categories", getCategories),
