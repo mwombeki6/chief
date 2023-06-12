@@ -74,7 +74,8 @@ def logoutView(request):
 
 class WhoAmIView(APIView):
     authentication_classes = [SessionAuthentication]
-    permission_classes = [IsAuthenticated ]
+    permission_classes = [IsAuthenticated]
+    queryset = User.objects.all()
 
     @staticmethod
     def get(request, format=None):
@@ -89,8 +90,8 @@ class WhoAmIView(APIView):
         'title': user.title,
         'education_background': user.education_background,
         'department': user.department
-    } 
-        return JsonResponse(data, safe=False) 
+    }
+        return JsonResponse(data, safe=False)
 
 
 class StaffView(viewsets.ModelViewSet):
@@ -103,7 +104,7 @@ class StaffView(viewsets.ModelViewSet):
         username = request.query_params.get('username')
         user = User.objects.get(username=username)
         serializer = self.get_serializer(user)
-        return Response(serializer.data)     
+        return Response(serializer.data)
 
 
 class StaffOnlyView(APIView):
@@ -113,7 +114,7 @@ class StaffOnlyView(APIView):
         try:
             user = request.user
             user = UserSerializer(user)
-            
+
 
             return Response({"user": user.data}, status=status.HTTP_200_OK)
         except:
