@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.utils import timezone
 from autoslug import AutoSlugField
 from django.utils.translation import gettext_lazy as _
+from datetime import datetime
 
 from mptt.models import MPTTModel, TreeForeignKey, TreeManyToManyField
 from cloudinary.models import CloudinaryField
@@ -56,7 +57,7 @@ class Publication(models.Model):
     published_file = models.FileField(upload_to='publication/files')
     pages = models.IntegerField(null=True, blank=True)
     publisher = models.CharField(max_length=255, null=False)
-    published_at = models.DateField(default=timezone.now)
+    published_at = models.DateField(auto_now = True)
     uploaded_by = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     #research_duration = models.CharField(max_length=100)
     authors = models.CharField(max_length=255 , null=True)

@@ -4,20 +4,19 @@ from rest_framework import serializers
 from innovation.models import Innovation, Media, Category
 
 class InnovationSerializer(serializers.ModelSerializer):
-    uploaded_by = serializers.SerializerMethodField()
-    innovation_count = serializers.SerializerMethodField()
-
-    category_slug = serializers.CharField(source='category.slug')
+    
+    #innovation_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Innovation
-        fields = ( 'category_slug', 'innovation_name', 'slug', 'abstract', 'innovation_file', 'uploaded_at', 'uploaded_by', 'innovation_count')
+        fields = ( 'category', 'innovation_name', 'slug', 'abstract', 'innovation_file', 'uploaded_at', 'uploaded_by')
+  
 
-    def get_uploaded_by(self, obj):
-        return obj.uploaded_by.username   
+   # def get_uploaded_by(self, obj):
+    #    return obj.uploaded_by.all()  
 
-    def get_innovation_count(self, obj):
-        return len(obj.innovation_file.all()) 
+    #def get_innovation_count(self, obj):
+     #   return len(obj.innovation_file.all()) 
         
 
 class MediaSerializer(serializers.ModelSerializer):

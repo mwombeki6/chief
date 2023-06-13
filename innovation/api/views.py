@@ -46,8 +46,6 @@ def uploadView(request):
             'innovation': serializer.data, 
             'message': 'Innovation uploaded successfully'
         })   
-    
-    
 
         
     return rest_exceptions.status
