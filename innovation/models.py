@@ -42,8 +42,6 @@ class Category(MPTTModel):
         verbose_name_plural = _('categories')
         ordering = ['topic_name']
 
-    
-    
 class Innovation(models.Model):
     """
     Innovation table
@@ -70,8 +68,7 @@ class Innovation(models.Model):
     def __str__(self):
         return self.innovation_name
     
-
-    
+ 
 class Media(models.Model):
     """
     Innovation Media table
