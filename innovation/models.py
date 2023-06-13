@@ -54,6 +54,9 @@ class Innovation(models.Model):
     innovation_file = models.FileField(upload_to='innovation/files')
     uploaded_at = models.DateTimeField(default=timezone.now)
     uploaded_by = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    in_progress = models.BooleanField(default=True)
+    verified = models.BooleanField(default=False)
+    rejected = models.BooleanField(default=False)
     
     class Meta:
         ordering = ("-uploaded_at",)
@@ -73,7 +76,6 @@ class Media(models.Model):
     """
     Innovation Media table
     """    
-
     innovation = models.ForeignKey('Innovation', on_delete=models.CASCADE)
     images = CloudinaryField()
     alt_text = models.CharField(max_length=100)
