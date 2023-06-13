@@ -7,9 +7,11 @@ class InnovationSerializer(serializers.ModelSerializer):
     uploaded_by = serializers.SerializerMethodField()
     innovation_count = serializers.SerializerMethodField()
 
+    category_slug = serializers.CharField(source='category.slug')
+
     class Meta:
         model = Innovation
-        fields = ( 'category', 'innovation_name', 'slug', 'abstract', 'innovation_file', 'uploaded_at', 'uploaded_by', 'innovation_count')
+        fields = ( 'category_slug', 'innovation_name', 'slug', 'abstract', 'innovation_file', 'uploaded_at', 'uploaded_by', 'innovation_count')
 
     def get_uploaded_by(self, obj):
         return obj.uploaded_by.username   

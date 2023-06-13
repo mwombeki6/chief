@@ -47,13 +47,7 @@ def uploadView(request):
             'message': 'Innovation uploaded successfully'
         })   
     
-    users = User.objects.exclude(id=request.user.id)
-    message = f"{request.user.username} uploaded a file"
-    notifications = []
-    for user in users:
-        notification = Notification(user=user, message=message)
-        notifications.append(notification)
-    Notification.objects.bulk_create(notifications)   
+    
 
         
     return rest_exceptions.status
