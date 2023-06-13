@@ -56,7 +56,6 @@ class Innovation(models.Model):
     innovation_file = models.FileField(upload_to='innovation/files')
     uploaded_at = models.DateTimeField(default=timezone.now)
     uploaded_by = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-   
     
     class Meta:
         ordering = ("-uploaded_at",)
