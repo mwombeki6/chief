@@ -9,7 +9,7 @@ class InnovationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Innovation
-        fields = ( 'category', 'innovation_name', 'slug', 'abstract', 'innovation_file', 'uploaded_at', 'uploaded_by')
+        fields = ( 'category', 'innovation_name', 'slug', 'abstract', 'innovation_file', 'uploaded_at', 'uploaded_by', 'status')
   
 
    # def get_uploaded_by(self, obj):

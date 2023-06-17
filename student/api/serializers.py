@@ -42,3 +42,26 @@ class StudentSerializer(serializers.ModelSerializer):
         Student.objects.create(user=user)
 
         return user
+    
+class UpdateSerializer(serializers.ModelSerializer):
+    first_name = serializers.CharField(required=False, allow_null=True)
+    last_name = serializers.CharField(required=False, allow_null=True)
+    username = serializers.CharField(required=False,allow_null=True)
+    email = serializers.EmailField(required=False,allow_null=True)
+    employee_number = serializers.CharField(allow_null=True)
+    title = serializers.CharField(allow_null=True)
+    education_background = serializers.CharField(allow_null=True)
+    department = serializers.CharField(allow_null=True)
+
+    class Meta:
+        model = User
+        fields = (
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "employee_number",
+            "title",
+            "education_background",
+            "department",
+        )    

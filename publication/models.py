@@ -50,6 +50,13 @@ class Publication(models.Model):
     Publication table
     """
 
+    STATUS_CHOICES = (
+        ('in_progress', 'In Progress'),
+        ('approved', 'Approved'),
+        ('rejected', 'Rejected'),
+    )
+
+
     category = models.ForeignKey(Category, on_delete = models.RESTRICT)
     publication_name = models.CharField(max_length=255, null=False )
     slug = AutoSlugField(populate_from = 'publication_name', unique=True, primary_key=True)
@@ -61,6 +68,7 @@ class Publication(models.Model):
     uploaded_by = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     #research_duration = models.CharField(max_length=100)
     authors = models.CharField(max_length=255 , null=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='in_progress')
     
     class Meta:
         ordering = ("-published_at",)

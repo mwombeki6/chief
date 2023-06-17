@@ -47,6 +47,12 @@ class Innovation(models.Model):
     Innovation table
     """
 
+    STATUS_CHOICES = (
+        ('in_progress', 'In Progress'),
+        ('approved', 'Approved'),
+        ('rejected', 'Rejected'),
+    )
+
     category = models.ForeignKey(Category, on_delete = models.RESTRICT)
     innovation_name = models.CharField(max_length=255, null=False )
     slug = AutoSlugField(populate_from = 'innovation_name', unique=True, primary_key=True)
@@ -54,9 +60,7 @@ class Innovation(models.Model):
     innovation_file = models.FileField(upload_to='innovation/files')
     uploaded_at = models.DateTimeField(default=timezone.now)
     uploaded_by = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    in_progress = models.BooleanField(default=True)
-    verified = models.BooleanField(default=False)
-    rejected = models.BooleanField(default=False)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='in_progress')
     
     class Meta:
         ordering = ("-uploaded_at",)

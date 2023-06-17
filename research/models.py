@@ -49,6 +49,13 @@ class Research(models.Model):
     Research table
     """
 
+    STATUS_CHOICES = (
+        ('in_progress', 'In Progress'),
+        ('approved', 'Approved'),
+        ('rejected', 'Rejected'),
+    )
+
+
     category = models.ForeignKey(Category, on_delete = models.RESTRICT)
     research_name = models.CharField(max_length=255, null=False )
     slug = AutoSlugField(populate_from = 'research_name', unique=True, primary_key=True)
@@ -57,6 +64,7 @@ class Research(models.Model):
     uploaded_at = models.DateTimeField(default=timezone.now)
     uploaded_by = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     research_duration = models.CharField(max_length=100)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='in_progress')
     
     class Meta:
         ordering = ("-uploaded_at",)

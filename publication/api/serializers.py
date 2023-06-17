@@ -8,7 +8,7 @@ class PublicationSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Publication
-        fields = ('category', 'publication_name', 'slug', 'abstract', 'published_file', 'pages', 'publisher', 'published_at', 'uploaded_by', 'authors')
+        fields = ('category', 'publication_name', 'slug', 'abstract', 'published_file', 'pages', 'publisher', 'published_at', 'uploaded_by', 'authors', 'status')
 
       
         

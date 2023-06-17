@@ -8,7 +8,7 @@ class ResearchSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Research
-        fields = ('category', 'research_name', 'slug', 'abstract')
+        fields = ('category', 'research_name', 'slug', 'abstract', 'status')
 
   
         

@@ -19,7 +19,7 @@ from rest_framework import (
 from student.models import Student
 from custom.models import User
 from custom.api.serializers import UserSerializer
-from .serializers import StudentSerializer
+from .serializers import StudentSerializer, UpdateSerializer
 
 @rest_decorators.api_view(["GET"])
 def get_session_id(request):
@@ -144,3 +144,21 @@ def registerView(request):
         )
 
     return rest_exceptions.AuthenticationFailed("Invalid credentials!")
+
+@rest_decorators.api_view(['PUT', 'PATCH'])
+@rest_decorators.permission_classes([rest_permissions.IsAuthenticated])
+def update_account(request):
+    user = request.user
+    serializer = UpdateSerializer(user, data=request.data, partial=True)
+
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
+
+@rest_decorators.api_view(['DELETE'])
+@rest_decorators.permission_classes([rest_permissions.IsAuthenticated])
+def delete_account(request):
+    user = request.user
+    user.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)

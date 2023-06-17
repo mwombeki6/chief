@@ -8,7 +8,9 @@ from .views import (
     StudentOnlyView,
     check_auth,
     logoutView,
-    getSession
+    getSession,
+    update_account,
+    delete_account
 )
 
 urlpatterns = [
@@ -20,4 +22,6 @@ urlpatterns = [
     path("get_user", WhoAmIView.as_view()),
     path("student_dashboard", StudentOnlyView.as_view()),
     path("logout", logoutView),
+    path("update", update_account),
+    path("delete", delete_account),
 ]
